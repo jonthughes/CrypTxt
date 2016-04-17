@@ -21,7 +21,7 @@
         <activity android:name=".HelpActivity" />
         <activity android:name=".SendActivity" />
         <activity android:name=".ReceiveActivity" />
-        <activity android:name=".ShareActivity"></activity>
+        <activity android:name=".ShareActivity" />
     </application>
 
 </manifest>

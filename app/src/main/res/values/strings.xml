@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">CrypTxt</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string-array name="cipher_array">
+        <item>Shift</item>
+        <item>Vigenère</item>
+        <item>Substitution</item>
+        <item>Permutation</item>
+        <item>Advanced</item>
+    </string-array>
+
+    <string name="helpString">
+    Cryptography: Using mathematics to alter messages to hide their meaning.
+    Encryption: Using a Cryptographic function to hide words going
+    from plaintext to
+    ciphertext.
+    Decryption: Using a Cryptographic function to reveal hidden words going
+    from
+    ciphertext to plaintext.
+    Key: The combination of words or letters that are used to encrypt or decrypt
+    the message.
+    Cloud: A reference to being saved on the server.
+    Plaintext: Text that has not been encrypted and can be read by a human.
+    Ciphertext: Text that has been encrypted and cannot yet be read by a human.
+    Cipher Alphabet: Numbers corresponding to each letter, such as:
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    Shift Cipher: An encryption method that shifts each plaintext letters by a certain
+    number of characters, specified by the key from the cipher alphabet
+    (a=0, b=1, c=2, … z=25). So, j shifted 3, would go from 9 to 12, resulting
+    in the letter m in ciphertext. (Going past 25 wraps around.)
+    Vigenère Cipher: An encryption method that uses a word as they key, with each letter
+    being the amount to shift each character in the plaintext.
+    (banana = 1, 0, 13, 0, 13, 0 would shift the first letter by 1, second letter
+    by 0, third by 13, etc., and repeat on the 7th letter (since banana is 6
+    letters long)
+    Substitution Cipher: An encryption method that swaps each letter of an alphabet with
+    another letter, such as below would change a to z, h to s, etc.:
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    z y x w v u t s r q p o n m l k j i h g f e d c b a
+    Permutation Cipher: An encryption method that swaps the placement of letters in a certain
+    pattern (for example, put the 1st letter in the 4th position, 2nd letter in
+    the 6th position, etc.) If the key is {3,5,1,6,4,2}, then “thread” would
+    encrypt to “ratdeh” with
+    ‘r’ being the 3rd letter, ‘a’ being the 5th etc.
+    Advanced Cipher: A combination encryption method that combines the substitution and
+    permutation ciphers for extra security.
+    </string>
 </resources>

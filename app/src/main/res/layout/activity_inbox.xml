@@ -9,4 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uw.edu.tcss450.team6.cryptxt.InboxActivity">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inboxListView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:choiceMode="singleChoice" />
+
 </RelativeLayout>
