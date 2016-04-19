@@ -33,4 +33,5 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
+
 }
