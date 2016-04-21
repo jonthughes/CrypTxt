@@ -147,6 +147,11 @@ public class Cipher {
         }
         return r;
     }
+
+    public String advanced(String input, String key) {
+        //ADD STUFF
+        return null;
+    }
 }
 
 
