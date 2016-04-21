@@ -150,7 +150,7 @@ public class Cipher {
 
     public String advanced(String input, String key) {
         //ADD STUFF
-        return null;
+        return "Hello";
     }
 }
 
