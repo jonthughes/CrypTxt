@@ -149,8 +149,19 @@ public class Cipher {
     }
 
     public String advanced(String input, String key) {
-        //ADD STUFF
-        return "Hello";
+        String key1 = key.substring(0, 26);
+        String key2 = key.substring(26);
+        String input2 = substitution(input, key1);
+        String r = permutation(input2, key2);
+        return r;
+    }
+
+    public String advancedUndo(String input, String key) {
+        String key1 = key.substring(0, 26);
+        String key2 = key.substring(26);
+        String input2 = substitutionUndo(input, key1);
+        String r = permutationUndo(input2, key2);
+        return r;
     }
 }
 
