@@ -1,8 +1,5 @@
 package uw.edu.tcss450.team6.cryptxt;
 
-/**
- * @author Jonathan Hughes
- */
 public class Cipher {
 
     public Cipher () {
@@ -21,129 +18,163 @@ public class Cipher {
     }
 
     public String caesarShift(String input, int key) {
-        String s = strToCapLetters(input);
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            c = (char) (c + key);
-            if (c > 'Z') {
-                c = (char) (c - 26);
+        try {
+            String s = strToCapLetters(input);
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                c = (char) (c + key);
+                if (c > 'Z') {
+                    c = (char) (c - 26);
+                }
+                r += c;
+                return r;
             }
-            r += c;
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String caesarShiftUndo(String input, int key) {
-        String s = strToCapLetters(input);
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            c = (char) (c - key);
-            if (c < 'A') {
-                c = (char) (c + 26);
+        try {
+            String s = strToCapLetters(input);
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                c = (char) (c - key);
+                if (c < 'A') {
+                    c = (char) (c + 26);
+                }
+                r += c;
             }
-            r += c;
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String vigenere(String input, String key) {
-        String s = strToCapLetters(input);
-        String ks = strToCapLetters(key);
-        int len = ks.length();
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int k = ks.charAt(i % len) - 'A';
-            c = (char) (c + k);
-            if (c > 'Z') {
-                c = (char) (c - 26);
+        try {
+            String s = strToCapLetters(input);
+            String ks = strToCapLetters(key);
+            int len = ks.length();
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int k = ks.charAt(i % len) - 'A';
+                c = (char) (c + k);
+                if (c > 'Z') {
+                    c = (char) (c - 26);
+                }
+                r += c;
             }
-            r += c;
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String vigenereUndo(String input, String key) {
-        String s = strToCapLetters(input);
-        String ks = strToCapLetters(key);
-        int len = ks.length();
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int k = ks.charAt(i % len) - 'A';
-            c = (char) (c - k);
-            if (c < 'A') {
-                c = (char) (c + 26);
+        try {
+            String s = strToCapLetters(input);
+            String ks = strToCapLetters(key);
+            int len = ks.length();
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int k = ks.charAt(i % len) - 'A';
+                c = (char) (c - k);
+                if (c < 'A') {
+                    c = (char) (c + 26);
+                }
+                r += c;
             }
-            r += c;
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String substitution(String input, String key) {
-        String s = strToCapLetters(input);
-        String ks = strToCapLetters(key);
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int x = ks.indexOf(""+c);
-            char d = (char) (x + 'A');
-            r += d;
+        try {
+            String s = strToCapLetters(input);
+            String ks = strToCapLetters(key);
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int x = ks.indexOf(""+c);
+                char d = (char) (x + 'A');
+                r += d;
+            }
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String substitutionUndo(String input, String key) {
-        String s = strToCapLetters(input);
-        String ks = strToCapLetters(key);
         String r = "";
-        for (int i= 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int x = c - 'A';
-            char d = ks.charAt(x);
-            r += d;
+        try {
+            String s = strToCapLetters(input);
+            String ks = strToCapLetters(key);
+            for (int i= 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int x = c - 'A';
+                char d = ks.charAt(x);
+                r += d;
+            }
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String permutation(String input, String key) {
-        String s = strToCapLetters(input);
-        int size = key.length();
-
-        while (s.length() % size != 0) {
-            s += (char)((Math.random() * 26) + 'A');
-        }
         String r = "";
+        try {
+            String s = strToCapLetters(input);
+            int size = key.length();
 
-        int len = s.length();
+            while (s.length() % size != 0) {
+                s += (char)((Math.random() * 26) + 'A');
+            }
 
-        for (int i= 0; i < len; i++) {
-            int x = key.charAt(i % size) - 48;
-            char c = s.charAt(((i / size) * size) + x - 1);
-            r += c;
+            int len = s.length();
+
+            for (int i= 0; i < len; i++) {
+                int x = key.charAt(i % size) - 48;
+                char c = s.charAt(((i / size) * size) + x - 1);
+                r += c;
+            }
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
 
     public String permutationUndo(String input, String key) {
-        String s = strToCapLetters(input);
-        int size = key.length();
-
-        while (s.length() % size != 0) {
-            s += (char)((Math.random() * 26) + 'A');
-        }
         String r = "";
+        try {
+            String s = strToCapLetters(input);
+            int size = key.length();
 
-        int len = s.length();
+            while (s.length() % size != 0) {
+                s += (char)((Math.random() * 26) + 'A');
+            }
 
-        for (int i= 0; i < len; i++) {
-            int x = (i / size) * size;
-            int y = (i % size) + 1;
-            int z = key.indexOf(y + '0');
-            char c = s.charAt(x + z);
-            r += c;
+
+            int len = s.length();
+
+            for (int i= 0; i < len; i++) {
+                int x = (i / size) * size;
+                int y = (i % size) + 1;
+                int z = key.indexOf(y + '0');
+                char c = s.charAt(x + z);
+                r += c;
+            }
+        } catch (Exception e) {
+            r = "Invalid key";
         }
         return r;
     }
@@ -164,5 +195,4 @@ public class Cipher {
         return r;
     }
 }
-
 
