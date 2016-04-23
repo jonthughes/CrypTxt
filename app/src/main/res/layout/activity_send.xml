@@ -11,45 +11,42 @@
     tools:context="uw.edu.tcss450.team6.cryptxt.SendActivity"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:text="To: "
-        android:id="@+id/sendTo"/>
-
-    <Space
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.07" />
+        android:layout_gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message: "
-        android:id="@+id/sendtextView6" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To: " />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   Sample Message Text"
-        android:id="@+id/sendtextView9" />
+        <EditText
+            android:id="@+id/sendRecipient"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Recipient"/>
+    </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.07" />
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal">-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encryption Method:"
-        android:id="@+id/sendtextView8" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message: " />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sendSpinner" />
+        <EditText
+            android:id="@+id/plaintext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="Enter Message" />
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:orientation="horizontal"
@@ -60,33 +57,56 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Key:"
-            android:id="@+id/sendKey" />
+            android:text="Encryption Method:" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendSpinner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Key:" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editSendKey"
+            android:id="@+id/sendKey"
             android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encrypt"
+            android:id="@+id/sendEncryptButton"
+            android:layout_gravity="center_horizontal"
+            android:onClick="encrypt"/>
     </LinearLayout>
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encrypted Message: " />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendMessage"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Encrypt"
-        android:id="@+id/sendEncryptButton"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encrypted Message: "
-        android:id="@+id/sendtextView10" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   kjsadflikjsdlkfjsdlkjflj"
-        android:id="@+id/sendtextView11" />
-
+        android:text="Send"
+        android:id="@+id/sendButton"
+        android:layout_gravity="center|bottom"
+        android:onClick="send"/>
 </LinearLayout>

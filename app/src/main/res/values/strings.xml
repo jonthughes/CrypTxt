@@ -4,7 +4,7 @@
 
     <string-array name="cipher_array">
         <item>Shift</item>
-        <item>Vigenère</item>
+        <item>Vigenere</item>
         <item>Substitution</item>
         <item>Permutation</item>
         <item>Advanced</item>
