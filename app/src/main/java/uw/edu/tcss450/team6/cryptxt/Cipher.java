@@ -17,18 +17,18 @@ public class Cipher {
         return s;
     }
 
-    public String caesarShift(String input, int key) {
+    public String caesarShift(String input, String key) {
         String r = "";
         try {
             String s = strToCapLetters(input);
+            int k = Integer.parseInt(key);
             for (int i= 0; i < s.length(); i++) {
                 char c = s.charAt(i);
-                c = (char) (c + key);
+                c = (char) (c + k);
                 if (c > 'Z') {
                     c = (char) (c - 26);
                 }
                 r += c;
-                return r;
             }
         } catch (Exception e) {
             r = "Invalid key";
@@ -36,13 +36,14 @@ public class Cipher {
         return r;
     }
 
-    public String caesarShiftUndo(String input, int key) {
+    public String caesarShiftUndo(String input, String key) {
         String r = "";
         try {
             String s = strToCapLetters(input);
+            int k = Integer.parseInt(key);
             for (int i= 0; i < s.length(); i++) {
                 char c = s.charAt(i);
-                c = (char) (c - key);
+                c = (char) (c - k);
                 if (c < 'A') {
                     c = (char) (c + 26);
                 }
@@ -180,18 +181,28 @@ public class Cipher {
     }
 
     public String advanced(String input, String key) {
-        String key1 = key.substring(0, 26);
-        String key2 = key.substring(26);
-        String input2 = substitution(input, key1);
-        String r = permutation(input2, key2);
+        String r = "";
+        try {
+            String key1 = key.substring(0, 26);
+            String key2 = key.substring(26);
+            String input2 = substitution(input, key1);
+            r = permutation(input2, key2);
+        } catch (Exception e) {
+            r = "Invalid key";
+        }
         return r;
     }
 
     public String advancedUndo(String input, String key) {
-        String key1 = key.substring(0, 26);
-        String key2 = key.substring(26);
-        String input2 = substitutionUndo(input, key1);
-        String r = permutationUndo(input2, key2);
+        String r = "";
+        try {
+            String key1 = key.substring(0, 26);
+            String key2 = key.substring(26);
+            String input2 = substitutionUndo(input, key1);
+            r = permutationUndo(input2, key2);
+        } catch (Exception e) {
+                r = "Invalid key";
+        }
         return r;
     }
 }

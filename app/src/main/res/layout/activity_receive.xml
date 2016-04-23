@@ -8,56 +8,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:layout_centerHorizontal="true"
     tools:context="uw.edu.tcss450.team6.cryptxt.ReceiveActivity"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="From: "
-        android:id="@+id/textView4" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date:"
-        android:id="@+id/textView5" />
-
-    <Space
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.07" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encrypted Message: "
-        android:id="@+id/textView6" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   alksjdflkjasldjflsakdjflksajdfljsaldjfsladjflkd"
-        android:id="@+id/textView9" />
-
-    <Space
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From: " />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/receiveFrom"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_weight="0.07" />
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/receiveDate" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Decryption Method:"
-        android:id="@+id/textView8" />
+        android:text="Encrypted Message: " />
 
-    <Spinner
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/receiveMessage"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/receiveSpinner"
-        android:layout_gravity="center_horizontal" />
+        android:inputType="textMultiLine"
+        android:hint="Enter Message" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -68,31 +61,56 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Key:"
-            android:id="@+id/receiveKey" />
+            android:text="Decryption Method:" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/receiveSpinner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Key:" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editReceiveKey"
+            android:id="@+id/receiveKey"
             android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decrypt"
+            android:id="@+id/receiveDecryptButton"
+            android:layout_gravity="center_horizontal"
+            android:onClick="decrypt"/>
     </LinearLayout>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrypted Message: " />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/receiveDecryptedMessage"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Decrypt"
-        android:id="@+id/decryptButton"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Decrypted Message: "
-        android:id="@+id/textView10" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   Sample decrypted message."
-        android:id="@+id/textView11" />
+        android:text="Reply"
+        android:id="@+id/replyButton"
+        android:layout_gravity="center|bottom"
+        android:onClick="reply"/>
 </LinearLayout>
+
