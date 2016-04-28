@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class LoginActivity extends AppCompatActivity {
@@ -15,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.loginView);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.loginView);
     }
 
     public void attemptLogin(View view) {
