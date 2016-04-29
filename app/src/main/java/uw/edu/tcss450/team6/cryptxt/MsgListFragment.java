@@ -1,6 +1,8 @@
 package uw.edu.tcss450.team6.cryptxt;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -83,8 +85,19 @@ public class MsgListFragment extends Fragment {
             }
 
         }
-        DownloadInboxTask task = new DownloadInboxTask();
-        task.execute(new String[]{INBOX_URL});
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            DownloadInboxTask task = new DownloadInboxTask();
+            task.execute(new String[]{INBOX_URL});
+        }
+        else {
+            Toast.makeText(view.getContext(),
+                    "No network connection available. Cannot display inbox.",
+                    Toast.LENGTH_SHORT) .show();
+
+        }
 
         return view;
     }

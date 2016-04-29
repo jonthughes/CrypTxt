@@ -2,6 +2,10 @@
     <string name="app_name">CrypTxt</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <string name="LOGIN_PREFS">uw.edu.tcss450.team6.cryptxt.PREFS</string>
+    <string name="LOGGEDIN">loggedin</string>
+    <string name="LOGIN_FILE"> uw.edu.tcss450.team6.cryptxt.LOGIN_FILE</string>
+
     <string-array name="cipher_array">
         <item>Shift</item>
         <item>Vigenere</item>
