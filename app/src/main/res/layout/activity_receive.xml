@@ -23,7 +23,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/receiveFrom"/>
+            android:id="@+id/receiveFrom"
+            android:textAppearance="?android:attr/textAppearanceListItem"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -33,11 +34,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date:"/>
+            android:text="Date: "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/receiveDate" />
+            android:id="@+id/receiveDate"
+            android:textAppearance="?android:attr/textAppearanceListItem"/>
     </LinearLayout>
 
     <TextView
@@ -45,12 +47,11 @@
         android:layout_height="wrap_content"
         android:text="Encrypted Message: " />
 
-    <EditText
+    <TextView
         android:id="@+id/receiveMessage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Enter Message" />
+        android:textAppearance="?android:attr/textAppearanceListItem"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -104,7 +105,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/receiveDecryptedMessage"/>
+        android:id="@+id/receiveDecryptedMessage"
+        android:textAppearance="?android:attr/textAppearanceListItem"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,5 +114,6 @@
         android:id="@+id/replyButton"
         android:layout_gravity="center|bottom"
         android:onClick="reply"/>
+
 </LinearLayout>
 
