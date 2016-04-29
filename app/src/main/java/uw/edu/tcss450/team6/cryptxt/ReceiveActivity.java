@@ -1,5 +1,6 @@
 package uw.edu.tcss450.team6.cryptxt;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -111,6 +112,8 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
     }
 
     public void reply(View view) {
+        Intent intent = new Intent(this, SendActivity.class);
+        startActivity(intent);
         //@TODO go to new message with To: filled out, use same key
     }
 }

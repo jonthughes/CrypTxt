@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import uw.edu.tcss450.team6.cryptxt.model.Msg;
 
 /**
@@ -31,6 +35,30 @@ public class InboxActivity extends AppCompatActivity implements MsgListFragment.
                     .add(R.id.fragment_container, msgListFragment)
                     .commit();
         }
+
+//        //Read from file and show the text
+//        try {
+//            InputStream inputStream = openFileInput(
+//                    getString(R.string.LOGIN_FILE));
+//
+//            if ( inputStream != null ) {
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                String receiveString = "";
+//                StringBuilder stringBuilder = new StringBuilder();
+//
+//                while ((receiveString = bufferedReader.readLine()) != null) {
+//                    stringBuilder.append(receiveString);
+//                }
+//
+//                inputStream.close();
+//                Toast.makeText(this, stringBuilder.toString(), Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
 //        // Get ListView object from xml
 //        listView = (ListView) findViewById(R.id.inboxListView);
 //
