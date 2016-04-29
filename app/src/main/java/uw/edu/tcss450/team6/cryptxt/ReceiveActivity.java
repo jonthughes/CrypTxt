@@ -9,11 +9,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import uw.edu.tcss450.team6.cryptxt.model.Msg;
+
 public class ReceiveActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    public static final String MSG_ITEM_SELECTED = "mis";
 
     private Cipher cipher;
     private int cipherNum;
     private View replyButton;
+
+    private TextView receiveFrom;
+    private TextView receiveDate;
+    private TextView receiveMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,33 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         spinner.setOnItemSelectedListener(this);
         replyButton = findViewById(R.id.replyButton);
         replyButton.setEnabled(false);
+
+        receiveFrom = (TextView) findViewById(R.id.receiveFrom);
+        receiveDate = (TextView) findViewById(R.id.receiveDate);
+        receiveMessage = (TextView) findViewById(R.id.receiveMessage);
+    }
+
+    public void updateView(Msg msg) {
+        if (msg != null) {
+            receiveFrom.setText(msg.getSender());
+            receiveDate.setText(msg.getDtg());
+            receiveMessage.setText(msg.getMsg());
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // During startup, check if there are arguments passed to the fragment.
+        // onStart is a good place to do this because the layout has already been
+        // applied to the fragment at this point so we can safely call the method
+        // below that sets the article text.
+        Bundle args = getIntent().getExtras();
+        if (args != null) {
+            // Set article based on argument passed in
+            updateView((Msg) args.getSerializable(MSG_ITEM_SELECTED));
+        }
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -45,8 +80,8 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
     }
 
     public void decrypt(View view) {
-        EditText input_EditText = (EditText) findViewById(R.id.receiveMessage);
-        String ciphertext = input_EditText.getText().toString();
+        TextView input_text = (TextView) findViewById(R.id.receiveMessage);
+        String ciphertext = input_text.getText().toString();
         EditText key_EditText = (EditText) findViewById(R.id.receiveKey);
         String key = key_EditText.getText().toString();
         String plaintext = "";

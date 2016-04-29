@@ -18,6 +18,7 @@ import uw.edu.tcss450.team6.cryptxt.model.Msg;
  */
 public class InboxActivity extends AppCompatActivity implements MsgListFragment.OnListFragmentInteractionListener {
 
+    public static final String MSG_ITEM_SELECTED = "mis";
     ListView listView ;
 
     @Override
@@ -78,6 +79,16 @@ public class InboxActivity extends AppCompatActivity implements MsgListFragment.
     }
 
     @Override
-    public void onListFragmentInteraction(Msg item) { }
+    public void onListFragmentInteraction(Msg item) {
+
+        Intent intent = new Intent(InboxActivity.this, ReceiveActivity.class);
+//        Bundle args = intent.getExtras();
+        intent.putExtra(InboxActivity.MSG_ITEM_SELECTED, item);
+        startActivity(intent);
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fragment_container, courseDetailFragment)
+//                .addToBackStack(null)
+//                .commit();
+    }
 
 }

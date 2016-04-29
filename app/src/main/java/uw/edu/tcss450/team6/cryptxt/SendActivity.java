@@ -1,25 +1,49 @@
 package uw.edu.tcss450.team6.cryptxt;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 
 public class SendActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private static final String cipherkey = "0";
+    private static final String sender = "user1";
+    private static final String MSG_ADD_URL = "https://staff.washington.edu/jth7985/CrypTxt/addMsg.php";
 
     private Cipher cipher;
     private int cipherNum;
     private View sendButton;
+
+    EditText input_EditText;
+    EditText key_EditText;
+    EditText recipient;
+    TextView msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         cipher = new Cipher();
         cipherNum = 0;
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_send);
         Spinner spinner = (Spinner) findViewById(R.id.sendSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -32,12 +56,15 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
         sendButton = findViewById(R.id.sendButton);
         sendButton.setEnabled(false);
+        input_EditText = (EditText) findViewById(R.id.plaintext);
+        key_EditText = (EditText) findViewById(R.id.sendKey);
+        recipient = (EditText) findViewById(R.id.sendRecipient);
+        msg = (TextView) findViewById(R.id.sendMessage);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         cipherNum = pos;
-
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -45,12 +72,10 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void encrypt(View view) {
-        EditText input_EditText = (EditText) findViewById(R.id.plaintext);
         String plaintext = input_EditText.getText().toString();
-        EditText key_EditText = (EditText) findViewById(R.id.sendKey);
         String key = key_EditText.getText().toString();
         String ciphertext = "";
-        switch(cipherNum) {
+        switch (cipherNum) {
             case 0: //shift
                 ciphertext = cipher.caesarShift(plaintext, key);
                 break;
@@ -70,12 +95,101 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
                 ciphertext = "Invalid cipher";
                 break;
         }
-        TextView t = (TextView)findViewById(R.id.sendMessage);
-        t.setText(ciphertext);
+        msg.setText(ciphertext);
         sendButton.setEnabled(true);
     }
 
     public void send(View view) {
-        //@TODO send message to server
+        String url = buildMsgURL(view);
+        AddMsgTask task = new AddMsgTask();
+        task.execute(new String[]{url.toString()});
+    }
+
+    private String buildMsgURL(View v) {
+
+        StringBuilder sb = new StringBuilder(MSG_ADD_URL);
+
+        try {
+            sb.append("?sender=");
+            sb.append(URLEncoder.encode(sender, "UTF-8"));
+
+            String receiver = recipient.getText().toString();
+            sb.append("&receiver=");
+            sb.append(URLEncoder.encode(receiver, "UTF-8"));
+
+            String message = msg.getText().toString();
+            sb.append("&msg=");
+            sb.append(URLEncoder.encode(message, "UTF-8"));
+
+            sb.append("&cipher=");
+            sb.append(URLEncoder.encode("" + cipherNum, "UTF-8"));
+
+            sb.append("&cipherkey=");
+            sb.append(URLEncoder.encode(cipherkey, "UTF-8"));
+
+            Log.i("MsgAddFragment", sb.toString());
+
+        } catch (Exception e) {
+            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
+    }
+
+    private class AddMsgTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls) {
+                try {
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                    InputStream content = urlConnection.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while ((s = buffer.readLine()) != null) {
+                        response += s;
+                    }
+
+                } catch (Exception e) {
+                    response = "Unable to add msg, Reason: "
+                            + e.getMessage();
+                } finally {
+                    if (urlConnection != null)
+                        urlConnection.disconnect();
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Something wrong with the network or the URL.
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                String status = (String) jsonObject.get("result");
+                if (status.equals("success")) {
+                    Toast.makeText(getApplicationContext(), "Msg sent!"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed to send: "
+                                    + jsonObject.get("error")
+                            , Toast.LENGTH_LONG)
+                            .show();
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
+                        e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
