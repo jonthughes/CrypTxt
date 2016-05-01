@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uw.edu.tcss450.team6.cryptxt.MsgListFragment">
+    tools:context="uw.edu.tcss450.team6.cryptxt.MsgListFragment"
+    android:background="#464646">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

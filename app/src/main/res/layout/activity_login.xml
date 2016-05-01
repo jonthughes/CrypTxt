@@ -10,7 +10,8 @@
     android:orientation="vertical"
     tools:context=".LoginActivity"
     android:id="@+id/loginView"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#464646">
 
     <ImageView
         android:layout_width="150dp"
@@ -36,17 +37,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:inputType="text"
         android:id="@+id/user_id"
-        android:hint="Enter your user name" />
+        android:hint="Enter your user name"
+        android:inputType="text" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:inputType="text"
         android:id="@+id/pwd"
-        android:hint="Enter your password" />
+        android:fontFamily="sans-serif"
+        android:hint="Enter your password"
+        android:inputType="textPassword" />
 
     <Space
         android:layout_width="match_parent"
