@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uw.edu.tcss450.team6.cryptxt.HomeActivity"
     android:orientation="vertical"
-    >
+    android:background="#464646">
 
     <ImageView
         android:layout_width="50dp"
