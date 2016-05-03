@@ -8,13 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uw.edu.tcss450.team6.cryptxt.ShareActivity"
-    android:background="#464646">
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/email_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To: " />
+        android:text="To: "
+        android:textColor="@color/textColor"/>
 
     <EditText
         android:id="@+id/email_recipient"
@@ -22,14 +23,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_to"
         android:hint="Enter Recipient"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/email_subject"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_recipient"
-        android:text="Subject:"/>
+        android:text="Subject:"
+        android:textColor="@color/textColor"/>
 
     <EditText
         android:id="@+id/recipient_subject"
@@ -37,20 +40,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_subject"
         android:hint="Enter Subject"
-        android:inputType="phone"/>
+        android:inputType="phone"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/email_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/recipient_subject"
-        android:text="Message:"/>
+        android:text="Message:"
+        android:textColor="@color/textColor"/>
 
     <EditText
         android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_message"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Check out this new app called CrypTxt it's an encrypted messaging service! (insert download link)"/>
 
     <Button
@@ -60,14 +66,16 @@
         android:onClick="sendEmailClick"
         android:text="Share"
         android:layout_below="@+id/body"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/buttonColor"/>
 
     <TextView
         android:id="@+id/sms_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_button"
-        android:text="To: " />
+        android:text="To: "
+        android:textColor="@color/textColor"/>
 
     <EditText
         android:id="@+id/sms_recipient"
@@ -75,7 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/sms_to"
         android:hint="Enter Recipient"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
 
     <TextView
@@ -83,13 +92,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sms_recipient"
-        android:text="Message:"/>
+        android:text="Message:"
+        android:textColor="@color/textColor"/>
 
     <EditText
         android:id="@+id/sms_body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sms_message"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Check out this new app called CrypTxt it's an encrypted messaging service! (insert download link)"/>
 
     <Button
@@ -98,5 +109,6 @@
         android:onClick="sendSmsClick"
         android:text="Share"
         android:layout_below="@+id/sms_body"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/buttonColor"/>
 </RelativeLayout>
