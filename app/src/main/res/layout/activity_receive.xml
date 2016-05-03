@@ -10,7 +10,8 @@
     android:orientation="vertical"
     tools:context="uw.edu.tcss450.team6.cryptxt.ReceiveActivity"
     android:weightSum="1"
-    android:background="#464646">
+    android:background="@color/background"
+    android:textColor="@color/textColor">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,13 +21,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From: " />
+            android:text="From: "
+            android:textColor="@color/textColor"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/receiveFrom"
             android:textAppearance="?android:attr/textAppearanceListItem"/>
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -35,25 +41,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date: "/>
+            android:text="Date: "
+            android:textColor="@color/textColor"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/receiveDate"
             android:textAppearance="?android:attr/textAppearanceListItem"/>
     </LinearLayout>
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Encrypted Message: " />
+        android:text="Encrypted Message: "
+        android:textColor="@color/textColor"/>
 
     <TextView
         android:id="@+id/receiveMessage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceListItem"/>
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -63,14 +77,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Decryption Method:" />
+            android:text="Decryption Method:"
+            android:textColor="@color/textColor"/>
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/receiveSpinner" />
+            android:id="@+id/receiveSpinner"
+            android:backgroundTint="@color/colorPrimaryDark"/>
     </LinearLayout>
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -80,13 +99,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Key:" />
+            android:text="Key:"
+            android:textColor="@color/textColor"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/receiveKey"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimaryDark"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -94,27 +115,37 @@
             android:text="Decrypt"
             android:id="@+id/receiveDecryptButton"
             android:layout_gravity="center_horizontal"
-            android:onClick="decrypt"/>
+            android:onClick="decrypt"
+            android:background="@color/buttonColor"/>
     </LinearLayout>
 
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Decrypted Message: " />
+        android:text="Decrypted Message: "
+        android:textColor="@color/textColor"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/receiveDecryptedMessage"
         android:textAppearance="?android:attr/textAppearanceListItem"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reply"
         android:id="@+id/replyButton"
         android:layout_gravity="center|bottom"
-        android:onClick="reply"/>
+        android:onClick="reply"
+        android:background="@color/buttonColor"/>
 
 </LinearLayout>
 
