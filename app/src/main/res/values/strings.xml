@@ -15,34 +15,14 @@
     </string-array>
 
     <string name="helpString">
-    Cryptography: Using mathematics to alter messages to hide their meaning.\n\n
-    Encryption: Using a Cryptographic function to hide words going from plaintext to ciphertext.\n\n
-    Decryption: Using a Cryptographic function to reveal hidden words going from ciphertext to plaintext.\n\n
-    Key: The combination of words or letters that are used to encrypt or decrypt the message.\n\n
-    Cloud: A reference to being saved on the server.\n\n
-    Plaintext: Text that has not been encrypted and can be read by a human.\n\n
-    Ciphertext: Text that has been encrypted and cannot yet be read by a human.\n\n
-    Cipher Alphabet: Numbers corresponding to each letter, such as:\n
+    Cryptography: Using mathematics to alter messages to hide their meaning.\n\nEncryption: Using a Cryptographic function to hide words going from plaintext to ciphertext.\n\nDecryption: Using a Cryptographic function to reveal hidden words going from ciphertext to plaintext.\n\nKey: The combination of words or letters that are used to encrypt or decrypt the message.\n\nCloud: A reference to being saved on the server.\n\nPlaintext: Text that has not been encrypted and can be read by a human.\n\nCiphertext: Text that has been encrypted and cannot yet be read by a human.\n\nCipher Alphabet: Numbers corresponding to each letter, such as:\n
     \ta b c d e f … z\n
-    \t0 1 2 3 4 5 … 25\n\n
-    Shift Cipher: An encryption method that shifts each plaintext letters by a certain number of characters,
+    \t0 1 2 3 4 5 … 25\n\nShift Cipher: An encryption method that shifts each plaintext letters by a certain number of characters,
         specified by the key from the cipher alphabet
-    (a=0, b=1, c=2, … z=25). For example, the letter ‘j’ shifted by 3, would result
-    in the letter ‘m’ in ciphertext. (Shifting characters past ‘z’ loops back through the alphabet.)\n\n
-    Vigenère Cipher: An encryption method that uses a word as the key, with each letter in the key
-    indicating the amount to shift each character in the plaintext.
-    (key: banana = 1, 0, 13, 0, 13, 0 would shift the first letter in the plaintext by 1, second letter
-    by 0, third by 13, etc., and on the 7th letter shifting it by the letter ‘b’ again (loops through the key).\n\n
-    Substitution Cipher: An encryption method that swaps each letter of an alphabet with
-    another letter, such as below would change ‘a’ to ‘z’, ‘h’ to ‘s’, etc.:\n
-    \ta b c d e f g h i j k l m n o p q r s t u v w x y z\n
-    \tz y x w v u t s r q p o n m l k j i h g f e d c b a\n\n
-    Permutation Cipher: An encryption method that swaps the placement of letters in a certain
-    pattern (for example, put the 1st letter in the 4th position, 2nd letter in
-    the 6th position, etc.) If the key is {3,5,1,6,4,2}, then “thread” would
-    encrypt to “ratdeh” with ‘t’ becoming the 3rd letter, ‘h’ becoming the 5th, etc.\n\n
-    Advanced Cipher: A combination encryption method that combines the substitution and
-    permutation ciphers for extra security.\n
+    (a=0, b=1, c=2, … z=25). For example, the letter ‘j’ shifted by 3, would result in the letter ‘m’ in ciphertext. (Shifting characters past ‘z’ loops back through the alphabet.)\n\nVigenère Cipher: An encryption method that uses a word as the key, with each letter in the key indicating the amount to shift each character in the plaintext.
+    (key: banana = 1, 0, 13, 0, 13, 0 would shift the first letter in the plaintext by 1, second letter by 0, third by 13, etc., and on the 7th letter shifting it by the letter ‘b’ again (loops through the key).\n\nSubstitution Cipher: An encryption method that swaps each letter of an alphabet with another letter, such as below would change ‘a’ to ‘z’, ‘h’ to ‘s’, etc.:\n
+    \ta b c d e f g h i j k l m n o p q r s t u v w x y z\n\tz y x w v u t s r q p o n m l k j i h g f e d c b a\n\nPermutation Cipher: An encryption method that swaps the placement of letters in a certain pattern (for example, put the 1st letter in the 4th position, 2nd letter in
+    the 6th position, etc.) If the key is {3,5,1,6,4,2}, then “thread” would encrypt to “ratdeh” with ‘t’ becoming the 3rd letter, ‘h’ becoming the 5th, etc.\n\nAdvanced Cipher: A combination encryption method that combines the substitution and permutation ciphers for extra security.\n
     </string>
 
     <!-- TODO: Remove or change this placeholder text -->

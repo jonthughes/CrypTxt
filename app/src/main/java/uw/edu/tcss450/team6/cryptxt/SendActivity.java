@@ -1,6 +1,5 @@
 package uw.edu.tcss450.team6.cryptxt;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +22,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * The Send Activity creates a message to send to a chosen user.  It enables them to
+ * encrypted it with a chosen cipher and key before sending.
+ *
+ * @author Jonathan Hughes
+ * @date 28 April 2016
+ */
 public class SendActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String cipherkey = "0";
@@ -38,6 +44,9 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText recipient;
     TextView msg;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         cipher = new Cipher();
@@ -62,6 +71,9 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         msg = (TextView) findViewById(R.id.sendMessage);
     }
 
+    /**
+     * Changes the chosen cipher, selected by the user with the spinner.
+     */
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         cipherNum = pos;
@@ -71,6 +83,9 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         // Another interface callback
     }
 
+    /**
+     * Encrypts the message with the cipher and key chosen by the user.
+     */
     public void encrypt(View view) {
         String plaintext = input_EditText.getText().toString();
         String key = key_EditText.getText().toString();
@@ -99,16 +114,21 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         sendButton.setEnabled(true);
     }
 
+    /**
+     * Executes the send message task upon button press.
+     */
     public void send(View view) {
         String url = buildMsgURL(view);
         AddMsgTask task = new AddMsgTask();
         task.execute(new String[]{url.toString()});
     }
 
+    /**
+     * Builds a URL string to interact with the PHP code associated with sending a message.
+     * @return The built URL
+     */
     private String buildMsgURL(View v) {
-
         StringBuilder sb = new StringBuilder(MSG_ADD_URL);
-
         try {
             sb.append("?sender=");
             sb.append(URLEncoder.encode(sender, "UTF-8"));
@@ -127,7 +147,7 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
             sb.append("&cipherkey=");
             sb.append(URLEncoder.encode(cipherkey, "UTF-8"));
 
-            Log.i("MsgAddFragment", sb.toString());
+            Log.i("MsgSend", sb.toString());
 
         } catch (Exception e) {
             Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
@@ -136,12 +156,21 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         return sb.toString();
     }
 
+    /**
+     * Executes the PHP code URL associated with sending a message.
+     */
     private class AddMsgTask extends AsyncTask<String, Void, String> {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -158,7 +187,6 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
                     while ((s = buffer.readLine()) != null) {
                         response += s;
                     }
-
                 } catch (Exception e) {
                     response = "Unable to add msg, Reason: "
                             + e.getMessage();
@@ -170,6 +198,9 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
             return response;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
