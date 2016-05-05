@@ -12,9 +12,13 @@ import uw.edu.tcss450.team6.cryptxt.model.Msg;
 import java.util.List;
 
 /**
+ * MyMsgRecyclerViewAdapter is the view adapter for the inbox.
+ *
+ * @author Jonathan Hughes
+ * @date 28 April 2016
+ *
  * {@link RecyclerView.Adapter} that can display a {@link Msg} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class MyMsgRecyclerViewAdapter extends RecyclerView.Adapter<MyMsgRecyclerViewAdapter.ViewHolder> {
 
@@ -26,6 +30,9 @@ public class MyMsgRecyclerViewAdapter extends RecyclerView.Adapter<MyMsgRecycler
         mListener = listener;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -33,6 +40,9 @@ public class MyMsgRecyclerViewAdapter extends RecyclerView.Adapter<MyMsgRecycler
         return new ViewHolder(view);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -51,11 +61,17 @@ public class MyMsgRecyclerViewAdapter extends RecyclerView.Adapter<MyMsgRecycler
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
     }
 
+    /**
+     * Holds the inbox view.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
@@ -69,6 +85,9 @@ public class MyMsgRecyclerViewAdapter extends RecyclerView.Adapter<MyMsgRecycler
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";

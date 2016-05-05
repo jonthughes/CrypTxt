@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 public class HelpActivity extends AppCompatActivity {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

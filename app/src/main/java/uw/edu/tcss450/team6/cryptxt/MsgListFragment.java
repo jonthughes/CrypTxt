@@ -26,7 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A fragment representing a list of Items.
+ * A fragment representing a list of Messages.
+ *
+ * @author Jonathan Hughes
+ * @date 28 April 2016
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
@@ -36,10 +39,7 @@ public class MsgListFragment extends Fragment {
     private static final String INBOX_URL =
             "https://staff.washington.edu/jth7985/CrypTxt/get.php?cmd=inbox";
     private RecyclerView mRecyclerView;
-
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
@@ -50,8 +50,9 @@ public class MsgListFragment extends Fragment {
     public MsgListFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
+    /**
+     * Initialize parameters.
+     */
     public static MsgListFragment newInstance(int columnCount) {
         MsgListFragment fragment = new MsgListFragment();
         Bundle args = new Bundle();
@@ -60,6 +61,9 @@ public class MsgListFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,9 @@ public class MsgListFragment extends Fragment {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,14 +90,35 @@ public class MsgListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
         }
+        String userName = "";
+        try {
+            InputStream inputStream = getActivity().openFileInput(
+                    getString(R.string.LOGIN_FILE));
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                userName = stringBuilder.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String URL_to_Execute = INBOX_URL + "&user=" + userName;
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             DownloadInboxTask task = new DownloadInboxTask();
-            task.execute(new String[]{INBOX_URL});
+            task.execute(new String[]{URL_to_Execute});
         }
         else {
             Toast.makeText(view.getContext(),
@@ -102,7 +130,9 @@ public class MsgListFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -114,6 +144,9 @@ public class MsgListFragment extends Fragment {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -131,12 +164,16 @@ public class MsgListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Msg item);
     }
 
+    /**
+     * Executes the built URL to run the PHP code associated with retrieving messages.
+     */
     private class DownloadInboxTask extends AsyncTask<String, Void, String> {
-
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -165,6 +202,10 @@ public class MsgListFragment extends Fragment {
             }
             return response;
         }
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
@@ -183,7 +224,7 @@ public class MsgListFragment extends Fragment {
                 return;
             }
 
-            // Everything is good, show the list of courses.
+            // Everything is good, show the list of messages.
             if (!msgList.isEmpty()) {
                 mRecyclerView.setAdapter(new MyMsgRecyclerViewAdapter(msgList, mListener));
             }

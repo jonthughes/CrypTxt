@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,6 +26,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * The LoginActivity class allows a user to register a user name and password or login with a
+ * user name and password that is already registered.
+ *
+ * @author Jonathan Hughes
+ * @date 19 April 2016
+ */
 public class LoginActivity extends AppCompatActivity {
     private static final String REGISTER_URL =
             "https://staff.washington.edu/jth7985/CrypTxt/addUser.php";
@@ -37,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private boolean loggedIn;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +63,12 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-
-
     }
 
+    /**
+     * Tries to register the user with the currently typed user name and password.  It will fail
+     * if the user name is already present in the database.
+     */
     public void attemptRegister(View v) {
         String userId = userIdText.getText().toString();
         String pwd = pwdText.getText().toString();
@@ -78,6 +89,10 @@ public class LoginActivity extends AppCompatActivity {
         register(userId, pwd, v);
     }
 
+    /**
+     * Tries to login the user with the currently typed user name and password.  It will fail
+     * if the user name and password combination is not in the database.
+     */
     public void attemptLogin(View v) {
         String userId = userIdText.getText().toString();
         String pwd = pwdText.getText().toString();
@@ -98,24 +113,29 @@ public class LoginActivity extends AppCompatActivity {
         login(userId, pwd, v);
     }
 
+    /**
+     * Verifies the user name and password.  It also writes to a login file if the user is
+     * validated.
+     * @param userId the currently typed user name
+     * @param pwd the currently typed password
+     */
     public void login(String userId, String pwd, View view) {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             //Check if the login and password are valid
-            //new LoginTask().execute(url);
             try {
                 String url = buildVerifyUserURL(view);
                 VerifyUserTask task = new VerifyUserTask();
                 task.execute(new String[]{url.toString()});
-                if(loggedIn == true) {
+//                if(loggedIn == true) {
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                             openFileOutput(getString(R.string.LOGIN_FILE)
                                     , Context.MODE_PRIVATE));
                     outputStreamWriter.write(userId);
                     outputStreamWriter.close();
-                }
+//                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -126,13 +146,15 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT) .show();
             return;
         }
-
     }
 
+    /**
+     * Builds a URL to execute the PHP file associated with checking the database for a user name
+     * and password.
+     * @return the built URL
+     */
     private String buildVerifyUserURL(View v) {
-
         StringBuilder sb = new StringBuilder(VERIFY_USER_URL);
-
         try {
             sb.append("?user=");
             sb.append(URLEncoder.encode(userIdText.getText().toString(), "UTF-8"));
@@ -149,12 +171,21 @@ public class LoginActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    /**
+     * Executes the built URL code to run the PHP code associated with verifying a user.
+     */
     private class VerifyUserTask extends AsyncTask<String, Void, String> {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -184,6 +215,9 @@ public class LoginActivity extends AppCompatActivity {
             return response;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
@@ -201,8 +235,6 @@ public class LoginActivity extends AppCompatActivity {
                             .commit();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
-
-
                 } else {
                     Toast.makeText(getApplicationContext(), "Failed to login: "
                                     + jsonObject.get("error")
@@ -218,24 +250,28 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Registers the user name and password, if valid.  It also writes to a login file if the user
+     * is registered.
+     * @param userId the currently typed user name
+     * @param pwd the currently typed password
+     */
     public void register(String userId, String pwd, View view) {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            //Check if the login and password are valid
-            //new LoginTask().execute(url);
             try {
                 String url = buildRegisterURL(view);
                 AddUserTask task = new AddUserTask();
                 task.execute(new String[]{url.toString()});
-                if(loggedIn == true) {
+//                if(loggedIn == true) {
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                             openFileOutput(getString(R.string.LOGIN_FILE)
                                     , Context.MODE_PRIVATE));
                     outputStreamWriter.write(userId);
                     outputStreamWriter.close();
-                }
+//                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -256,12 +292,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
+    /**
+     * Builds a URL to execute the PHP file associated with registering a new user name and password
+     * in the database.
+     * @return the built URL
+     */
     private String buildRegisterURL(View v) {
-
         StringBuilder sb = new StringBuilder(REGISTER_URL);
-
         try {
             sb.append("?user=");
             sb.append(URLEncoder.encode(userIdText.getText().toString(), "UTF-8"));
@@ -278,12 +315,21 @@ public class LoginActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    /**
+     * Executes the built URL code to run the PHP code associated with registering a user.
+     */
     private class AddUserTask extends AsyncTask<String, Void, String> {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -313,6 +359,9 @@ public class LoginActivity extends AppCompatActivity {
             return response;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.

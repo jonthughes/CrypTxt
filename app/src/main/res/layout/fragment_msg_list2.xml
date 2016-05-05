@@ -13,5 +13,6 @@
     tools:context="uw.edu.tcss450.team6.cryptxt.MsgListFragment"
     tools:listitem="@layout/fragment_msg"
 
+    android:background="@color/background"
 
-    android:background="#464646" />
+/>

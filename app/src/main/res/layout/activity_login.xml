@@ -11,7 +11,7 @@
     tools:context=".LoginActivity"
     android:id="@+id/loginView"
     android:weightSum="1"
-    android:background="#464646">
+    android:background="@color/background">
 
     <ImageView
         android:layout_width="150dp"
@@ -39,7 +39,8 @@
         android:layout_gravity="left"
         android:id="@+id/user_id"
         android:hint="Enter your user name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
         android:id="@+id/pwd"
         android:fontFamily="sans-serif"
         android:hint="Enter your password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <Space
         android:layout_width="match_parent"
@@ -62,7 +64,8 @@
         android:text="Login"
         android:id="@+id/loginButton"
         android:onClick="attemptLogin"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"/>
 
     <Space
         android:layout_width="match_parent"
@@ -76,5 +79,6 @@
         android:text="Register"
         android:id="@+id/register"
         android:onClick="attemptRegister"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"/>
 </LinearLayout>
