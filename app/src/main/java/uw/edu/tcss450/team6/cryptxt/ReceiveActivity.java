@@ -12,6 +12,13 @@ import android.widget.TextView;
 
 import uw.edu.tcss450.team6.cryptxt.model.Msg;
 
+/**
+ * The Receive Activity loads a message that was sent to the current user.  It enables them to
+ * decrypted it and reply if necessary.
+ *
+ * @author Jonathan Hughes
+ * @date 28 April 2016
+ */
 public class ReceiveActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final String MSG_ITEM_SELECTED = "mis";
@@ -24,6 +31,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
     private TextView receiveDate;
     private TextView receiveMessage;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         cipher = new Cipher();
@@ -48,6 +58,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         receiveMessage = (TextView) findViewById(R.id.receiveMessage);
     }
 
+    /**
+     * @param msg The message to load on the screen.
+     */
     public void updateView(Msg msg) {
         if (msg != null) {
             receiveFrom.setText(msg.getSender());
@@ -56,6 +69,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -71,6 +87,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Changes the chosen cipher, selected by the user with the spinner.
+     */
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         cipherNum = pos;
@@ -80,6 +99,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         // Another interface callback
     }
 
+    /**
+     * Decrypts the message with the cipher and key chosen by the user.
+     */
     public void decrypt(View view) {
         TextView input_text = (TextView) findViewById(R.id.receiveMessage);
         String ciphertext = input_text.getText().toString();
@@ -111,6 +133,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         replyButton.setEnabled(true);
     }
 
+    /**
+     * Start a Send Activity with the previous sender as the receiver.
+     */
     public void reply(View view) {
         Intent intent = new Intent(this, SendActivity.class);
         startActivity(intent);

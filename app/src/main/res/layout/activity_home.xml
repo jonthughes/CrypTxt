@@ -9,7 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uw.edu.tcss450.team6.cryptxt.HomeActivity"
     android:orientation="vertical"
-    android:background="#464646">
+    android:background="@color/background"
+    >
 
     <ImageView
         android:layout_width="50dp"
@@ -23,52 +24,63 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="CrypTxt"
         android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        />
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Inbox"
         android:id="@+id/inboxButton"
         android:onClick="startInbox"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Contacts"
         android:id="@+id/contactsButton"
         android:onClick="startContacts"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="New Msg"
         android:id="@+id/sendButton"
         android:onClick="startSend"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Share"
         android:id="@+id/shareButton"
         android:onClick="startShare"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Help"
         android:id="@+id/helpButton"
         android:onClick="startHelp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -76,6 +88,8 @@
         android:text="Logout"
         android:id="@+id/logout"
         android:onClick="logout"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttonColor"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>

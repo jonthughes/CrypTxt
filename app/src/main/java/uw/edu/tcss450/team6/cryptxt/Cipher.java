@@ -1,11 +1,21 @@
 package uw.edu.tcss450.team6.cryptxt;
 
+/**
+ * The Cipher class provides methods to encrypt and decrypt Strings with
+ * various Classical Ciphers.
+ *
+ * @author Jonathan Hughes
+ * @date 19 April 2016
+ */
 public class Cipher {
 
     public Cipher () {
-
     }
 
+    /**
+     * @param input String to modify
+     * @return String with all capital letters
+     */
     public String strToCapLetters(String input) {
         String s = "";
         for (int i = 0; i < input.length(); i++) {
@@ -17,6 +27,11 @@ public class Cipher {
         return s;
     }
 
+    /**
+     * @param input the plaintext
+     * @param key the cipher's key
+     * @return ciphertext encrypted with a caesar shift
+     */
     public String caesarShift(String input, String key) {
         String r = "";
         try {
@@ -36,6 +51,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the ciphertext
+     * @param key the cipher's key
+     * @return plaintext decrypted by a caesar shift
+     */
     public String caesarShiftUndo(String input, String key) {
         String r = "";
         try {
@@ -55,6 +75,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the plaintext
+     * @param key the cipher's key
+     * @return ciphertext encrypted by a vigenere cipher
+     */
     public String vigenere(String input, String key) {
         String r = "";
         try {
@@ -76,6 +101,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the ciphertext
+     * @param key the cipher's key
+     * @return plaintext decrypted by a vigenere cipher
+     */
     public String vigenereUndo(String input, String key) {
         String r = "";
         try {
@@ -97,6 +127,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the plaintext
+     * @param key the cipher's key
+     * @return ciphertext encrypted by a substitution cipher
+     */
     public String substitution(String input, String key) {
         String r = "";
         try {
@@ -114,6 +149,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the ciphertext
+     * @param key the cipher's key
+     * @return plaintext decrypted by a substitution cipher
+     */
     public String substitutionUndo(String input, String key) {
         String r = "";
         try {
@@ -131,6 +171,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the plaintext
+     * @param key the cipher's key
+     * @return ciphertext encrypted by a permutation cipher
+     */
     public String permutation(String input, String key) {
         String r = "";
         try {
@@ -154,6 +199,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the ciphertext
+     * @param key the cipher's key
+     * @return plaintext decrypted by a permutation cipher
+     */
     public String permutationUndo(String input, String key) {
         String r = "";
         try {
@@ -180,6 +230,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the plaintext
+     * @param key the cipher's key
+     * @return plaintext encrypted by a substitution and permutation cipher
+     */
     public String advanced(String input, String key) {
         String r = "";
         try {
@@ -193,6 +248,11 @@ public class Cipher {
         return r;
     }
 
+    /**
+     * @param input the ciphertext
+     * @param key the cipher's key
+     * @return plaintext decrypted by a substitution and permutation cipher
+     */
     public String advancedUndo(String input, String key) {
         String r = "";
         try {

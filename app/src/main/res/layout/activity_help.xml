@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uw.edu.tcss450.team6.cryptxt.HelpActivity"
-    android:background="#464646">
+    android:background="@color/background">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -22,7 +22,8 @@
             android:text="@string/helpString"
             android:id="@+id/helpTextView"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/textColor"/>
 
     </ScrollView>
 
