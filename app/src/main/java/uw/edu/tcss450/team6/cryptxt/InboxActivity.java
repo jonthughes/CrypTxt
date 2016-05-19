@@ -36,6 +36,7 @@ public class InboxActivity extends AppCompatActivity implements MsgListFragment.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.Inbox_Title);
         setContentView(R.layout.activity_inbox);
         if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
             MsgListFragment msgListFragment = new MsgListFragment();

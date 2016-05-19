@@ -1,7 +1,14 @@
 package uw.edu.tcss450.team6.cryptxt;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * The Share Activity shows a menu to share info about CrypTxt via email or text.
@@ -11,10 +18,84 @@ import android.os.Bundle;
  */
 public class ShareActivity extends AppCompatActivity {
 
+    Button emailSend;
+    EditText emailTo;
+    EditText emailSubject;
+    EditText emailMessage;
+
+    Button smsSend;
+    EditText smsTo;
+    EditText smsMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
+//
+//        Spinner spinner = (Spinner) findViewById(R.id.shareSpinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.share_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
 
+        emailSend = (Button) findViewById(R.id.email_button);
+        emailTo = (EditText) findViewById(R.id.email_recipient);
+        emailSubject = (EditText) findViewById(R.id.recipient_subject);
+        emailMessage = (EditText) findViewById(R.id.body);
+
+        smsSend = (Button) findViewById(R.id.sms_button);
+        smsTo = (EditText) findViewById(R.id.sms_recipient);
+        smsMessage = (EditText) findViewById(R.id.sms_body);
+
+        emailSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String to = emailTo.getText().toString();
+                String subject = emailSubject.getText().toString();
+                String message = emailMessage.getText().toString();
+
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
+                //email.putExtra(Intent.EXTRA_CC, new String[]{ to});
+                //email.putExtra(Intent.EXTRA_BCC, new String[]{to});
+                email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                email.putExtra(Intent.EXTRA_TEXT, message);
+                email.setType("message/rfc822");
+                startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+            }
+        });
+
+        smsSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String phoneNo = smsTo.getText().toString();
+                String sms = smsMessage.getText().toString();
+
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                    Toast.makeText(getApplicationContext(), "SMS Sent!",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS failed!",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+//        int shareItem = pos;
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
     }
 }

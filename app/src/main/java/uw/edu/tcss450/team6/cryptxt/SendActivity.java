@@ -53,6 +53,7 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         cipherNum = 0;
         super.onCreate(savedInstanceState);
 
+        setTitle(R.string.Send_Title);
         setContentView(R.layout.activity_send);
         Spinner spinner = (Spinner) findViewById(R.id.sendSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout

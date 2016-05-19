@@ -10,6 +10,8 @@ import android.os.Bundle;
  * @date 30 April 2016
  */
 public class ContactsActivity extends AppCompatActivity {
+    private static final String MSG_ADD_URL = "https://staff.washington.edu/jth7985/CrypTxt/addContact.php";
+
 
     /**
      * {@inheritDoc}
@@ -17,6 +19,7 @@ public class ContactsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.Contacts_Title);
         setContentView(R.layout.activity_contacts);
     }
 }

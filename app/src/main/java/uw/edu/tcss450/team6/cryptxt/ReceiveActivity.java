@@ -39,6 +39,7 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
         cipher = new Cipher();
         cipherNum = 0;
         super.onCreate(savedInstanceState);
+        setTitle(R.string.Receive_Title);
         setContentView(R.layout.activity_receive);
 
         Spinner spinner = (Spinner) findViewById(R.id.receiveSpinner);
