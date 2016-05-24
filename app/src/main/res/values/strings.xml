@@ -25,6 +25,24 @@
     the 6th position, etc.) If the key is {3,5,1,6,4,2}, then “thread” would encrypt to “ratdeh” with ‘t’ becoming the 3rd letter, ‘h’ becoming the 5th, etc.\n\nAdvanced Cipher: A combination encryption method that combines the substitution and permutation ciphers for extra security.\n
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Home_Title">Home</string>
+    <string name="Inbox_Title">Inbox</string>
+    <string name="Contacts_Title">Contacts</string>
+    <string name="Help_Title">Help</string>
+    <string name="Receive_Title">Receive</string>
+    <string name="Send_Title">Send</string>
+    <string name="Share_Title">Share</string>
+
+    <string name="to">To: </string>
+    <string name="email_hint">Enter Recipient Email</string>
+    <string name="subject_hint">Enter Subject</string>
+    <string name="subject">Subject:</string>
+    <string name="message">Message:</string>
+    <string name="email_placeholder">Check out this new app called CrypTxt it\'s an encrypted messaging service! (insert download link)</string>
+    <string name="share">Share</string>
+    <string name="phone_hint">Enter Recipient Phone #</string>
+
+
+
+
 </resources>
