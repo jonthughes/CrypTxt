@@ -31,7 +31,7 @@ import uw.edu.tcss450.team6.cryptxt.model.Contact;
 public class ContactsActivity extends AppCompatActivity implements ContactListFragment.OnListFragmentInteractionListener {
     private static final String CONTACT_ADD_URL = "https://staff.washington.edu/jth7985/CrypTxt/addContact.php";
     public static final String CONTACT_ITEM_SELECTED = "cis";
-    private static final String userTempValue = "user1";
+    private static final String userTempValue = "a";
     ListView listView;
     private View addContactButton;
     private EditText newContact;
@@ -87,7 +87,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
             sb.append("&contact=");
             sb.append(URLEncoder.encode(newContact.getText().toString(), "UTF-8"));
 
-            Log.i("MsgSend", sb.toString());
+            Log.i("contactSend", sb.toString());
 
         } catch (Exception e) {
             Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
@@ -158,7 +158,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
                             .show();
                 }
             } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
+                Toast.makeText(getApplicationContext(), "Something wrong with the data " +
                         e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
