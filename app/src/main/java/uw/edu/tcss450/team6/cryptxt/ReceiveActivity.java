@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import uw.edu.tcss450.team6.cryptxt.data.CryptxtDB;
 import uw.edu.tcss450.team6.cryptxt.model.Msg;
 
 /**
@@ -30,6 +31,9 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
     private TextView receiveFrom;
     private TextView receiveDate;
     private TextView receiveMessage;
+
+    private CryptxtDB mCryptxtDB;
+
 
     /**
      * {@inheritDoc}
@@ -138,6 +142,13 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
      * Start a Send Activity with the previous sender as the receiver.
      */
     public void reply(View view) {
+        //insert receiver into DB to fill in To: in the Send Activity
+        String receiver = receiveFrom.getText().toString();
+        if (mCryptxtDB == null) {
+            mCryptxtDB = new CryptxtDB(this);
+        }
+        mCryptxtDB.insertReceiver(receiver);
+
         Intent intent = new Intent(this, SendActivity.class);
         startActivity(intent);
         //@TODO go to new message with To: filled out, use same key

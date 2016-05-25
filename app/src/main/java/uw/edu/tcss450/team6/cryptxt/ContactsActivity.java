@@ -20,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import uw.edu.tcss450.team6.cryptxt.data.CryptxtDB;
 import uw.edu.tcss450.team6.cryptxt.model.Contact;
 
 /**
@@ -34,6 +35,8 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
     ListView listView;
     private View addContactButton;
     private EditText newContact;
+
+    private CryptxtDB mCryptxtDB;
 
     /**
      * {@inheritDoc}
@@ -59,6 +62,13 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
      */
     @Override
     public void onListFragmentInteraction(Contact item) {
+        //put contact as receiver in DB for new SendActivity
+        String receiver = item.getContact();
+        if (mCryptxtDB == null) {
+            mCryptxtDB = new CryptxtDB(this);
+        }
+        mCryptxtDB.insertReceiver(receiver);
+
         Intent intent = new Intent(ContactsActivity.this, SendActivity.class);
         intent.putExtra(ContactsActivity.CONTACT_ITEM_SELECTED, item);
         startActivity(intent);

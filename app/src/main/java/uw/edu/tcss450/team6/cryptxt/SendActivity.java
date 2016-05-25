@@ -22,6 +22,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import uw.edu.tcss450.team6.cryptxt.data.CryptxtDB;
+
 /**
  * The Send Activity creates a message to send to a chosen user.  It enables them to
  * encrypted it with a chosen cipher and key before sending.
@@ -42,6 +44,8 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText key_EditText;
     EditText recipient;
     TextView msg;
+
+    private CryptxtDB mCryptxtDB;
 
     /**
      * {@inheritDoc}
@@ -69,6 +73,12 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
         key_EditText = (EditText) findViewById(R.id.sendKey);
         recipient = (EditText) findViewById(R.id.sendRecipient);
         msg = (TextView) findViewById(R.id.sendMessage);
+
+        if (mCryptxtDB == null) {
+            mCryptxtDB = new CryptxtDB(this);
+        }
+        String receiver = mCryptxtDB.getReceiver();
+        recipient.setText(receiver);
     }
 
     /**
