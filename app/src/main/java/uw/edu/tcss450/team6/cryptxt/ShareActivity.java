@@ -18,6 +18,7 @@ import android.widget.Toast;
  */
 public class ShareActivity extends AppCompatActivity {
 
+    public static final String DOWNLOAD_LINK = "https://drive.google.com/file/d/0B3sIjP86ASGgN3dDXy15UnppaEU/view?usp=sharing";
     Button emailSend;
     EditText emailTo;
     EditText emailSubject;
@@ -55,6 +56,7 @@ public class ShareActivity extends AppCompatActivity {
                 String to = emailTo.getText().toString();
                 String subject = emailSubject.getText().toString();
                 String message = emailMessage.getText().toString();
+                message += DOWNLOAD_LINK;
 
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
@@ -74,6 +76,7 @@ public class ShareActivity extends AppCompatActivity {
 
                 String phoneNo = smsTo.getText().toString();
                 String sms = smsMessage.getText().toString();
+                sms += DOWNLOAD_LINK;
 
                 try {
                     SmsManager smsManager = SmsManager.getDefault();

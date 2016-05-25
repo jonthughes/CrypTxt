@@ -38,7 +38,7 @@
     <string name="subject_hint">Enter Subject</string>
     <string name="subject">Subject:</string>
     <string name="message">Message:</string>
-    <string name="email_placeholder">Check out this new app called CrypTxt it\'s an encrypted messaging service! (insert download link)</string>
+    <string name="email_placeholder">Check out this new app called CrypTxt it\'s an encrypted messaging service! </string>
     <string name="share">Share</string>
     <string name="phone_hint">Enter Recipient Phone #</string>
 
