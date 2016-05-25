@@ -223,8 +223,11 @@ public class ContactListFragment extends Fragment {
                 return;
             }
 
-            // Everything is good, show the list of messages.
+            // Everything is good, show the list of contacts.
             if (!contactsList.isEmpty()) {
+//                String s = contactsList.toString();
+//                Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_LONG)
+//                        .show();
                 mRecyclerView.setAdapter(new MyContactRecyclerViewAdapter(contactsList, mListener));
             }
         }

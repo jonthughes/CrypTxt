@@ -43,10 +43,10 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
         super.onCreate(savedInstanceState);
         setTitle(R.string.Contacts_Title);
         setContentView(R.layout.activity_contacts);
-        if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
+        if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list_contacts) == null) {
             ContactListFragment contactListFragment = new ContactListFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, contactListFragment)
+                    .add(R.id.fragment_container_contacts, contactListFragment)
                     .commit();
         }
         addContactButton = findViewById(R.id.addcontactbutton);
@@ -68,9 +68,21 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
      * Executes the add contact task upon button press.
      */
     public void addContact(View view) {
-        String url = buildContactURL(view);
-        AddContactTask task = new AddContactTask();
-        task.execute(new String[]{url.toString()});
+        String nContact = newContact.getText().toString();
+        if (nContact.length() <= 0) {
+            Toast.makeText(getApplicationContext(), "Enter contact!"
+                    , Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            String url = buildContactURL(view);
+            AddContactTask task = new AddContactTask();
+            task.execute(new String[]{url.toString()});
+
+            //refresh contacts
+            Intent refresh = new Intent(this, ContactsActivity.class);
+            startActivity(refresh);
+            this.finish();
+        }
     }
 
     /**

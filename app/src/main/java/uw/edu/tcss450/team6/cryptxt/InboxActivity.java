@@ -41,7 +41,7 @@ public class InboxActivity extends AppCompatActivity implements MsgListFragment.
         if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
             MsgListFragment msgListFragment = new MsgListFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, msgListFragment)
+                    .add(R.id.fragment_container_inbox, msgListFragment)
                     .commit();
         }
     }
