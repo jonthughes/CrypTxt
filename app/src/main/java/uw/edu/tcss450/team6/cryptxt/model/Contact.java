@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Contact implements Serializable {
 
-    public static final String CID = "cid", USER = "user", CONTACT = "contact";
+    public static final String CID = "cid", USER = "User", CONTACT = "Contact";
 
     private String cid;
     private String user;

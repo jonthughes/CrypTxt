@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,8 @@ public class ContactListFragment extends Fragment {
             mRecyclerView.setAdapter(new MyContactRecyclerViewAdapter(new ArrayList<Contact>(), mListener));
 
         }
+
+        //Get user name
         String userName = "";
         try {
             InputStream inputStream = getActivity().openFileInput(
@@ -111,12 +114,15 @@ public class ContactListFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         String URL_to_Execute = CONTACTS_URL + "&user=" + userName;
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             DownloadContactsTask task = new DownloadContactsTask();
+            Log.i("ContactListFragment", URL_to_Execute.toString());
             task.execute(new String[]{URL_to_Execute});
         }
         else {

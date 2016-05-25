@@ -31,7 +31,6 @@ import uw.edu.tcss450.team6.cryptxt.model.Contact;
 public class ContactsActivity extends AppCompatActivity implements ContactListFragment.OnListFragmentInteractionListener {
     private static final String CONTACT_ADD_URL = "https://staff.washington.edu/jth7985/CrypTxt/addContact.php";
     public static final String CONTACT_ITEM_SELECTED = "cis";
-    private static final String userTempValue = "a";
     ListView listView;
     private View addContactButton;
     private EditText newContact;
@@ -81,8 +80,29 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
     private String buildContactURL(View v) {
         StringBuilder sb = new StringBuilder(CONTACT_ADD_URL);
         try {
+            String userName = "";
+            try {
+                InputStream inputStream = openFileInput(
+                        getString(R.string.LOGIN_FILE));
+
+                if ( inputStream != null ) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String receiveString = "";
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    while ((receiveString = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(receiveString);
+                    }
+
+                    inputStream.close();
+                    userName = stringBuilder.toString();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             sb.append("?user=");
-            sb.append(URLEncoder.encode(userTempValue, "UTF-8"));
+            sb.append(URLEncoder.encode(userName, "UTF-8"));
 
             sb.append("&contact=");
             sb.append(URLEncoder.encode(newContact.getText().toString(), "UTF-8"));
@@ -148,18 +168,21 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
-                    Toast.makeText(getApplicationContext(), "New contact added!"
+                    Toast.makeText(getApplicationContext(), "Contact added!"
                             , Toast.LENGTH_LONG)
                             .show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Failed to add contact: "
-                            + jsonObject.get("error")
+                    Toast.makeText(getApplicationContext(), "Failed to add: "
+                                    + jsonObject.get("error")
                             , Toast.LENGTH_LONG)
                             .show();
                 }
             } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(), "Something wrong with the data " +
-                        e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
+//                        e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Contact added!"
+                        , Toast.LENGTH_LONG)
+                        .show();
             }
         }
     }

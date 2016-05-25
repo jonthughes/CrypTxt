@@ -119,6 +119,7 @@ public class MsgListFragment extends Fragment {
         if (networkInfo != null && networkInfo.isConnected()) {
             DownloadInboxTask task = new DownloadInboxTask();
             task.execute(new String[]{URL_to_Execute});
+            Log.i("MsgListFragment", URL_to_Execute.toString());
         }
         else {
             Toast.makeText(view.getContext(),

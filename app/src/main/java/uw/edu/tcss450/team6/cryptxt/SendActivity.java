@@ -32,7 +32,6 @@ import java.net.URLEncoder;
 public class SendActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String cipherkey = "0";
-    private static final String sender = "user1";
     private static final String MSG_ADD_URL = "https://staff.washington.edu/jth7985/CrypTxt/addMsg.php";
 
     private Cipher cipher;
@@ -131,8 +130,29 @@ public class SendActivity extends AppCompatActivity implements AdapterView.OnIte
     private String buildMsgURL(View v) {
         StringBuilder sb = new StringBuilder(MSG_ADD_URL);
         try {
+            String userName = "";
+            try {
+                InputStream inputStream = openFileInput(
+                        getString(R.string.LOGIN_FILE));
+
+                if ( inputStream != null ) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String receiveString = "";
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    while ((receiveString = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(receiveString);
+                    }
+
+                    inputStream.close();
+                    userName = stringBuilder.toString();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             sb.append("?sender=");
-            sb.append(URLEncoder.encode(sender, "UTF-8"));
+            sb.append(URLEncoder.encode(userName, "UTF-8"));
 
             String receiver = recipient.getText().toString();
             sb.append("&receiver=");

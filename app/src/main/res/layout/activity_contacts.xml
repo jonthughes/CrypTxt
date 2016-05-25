@@ -41,14 +41,14 @@
             android:id="@+id/newContact"
             android:layout_width="253dp"
             android:layout_height="wrap_content"
-            android:hint="Enter Username"
+            android:hint="Enter Contact Username"
             android:backgroundTint="@color/colorPrimaryDark"
             android:layout_weight=".75" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Contact"
+            android:text="Add"
             android:id="@+id/addcontactbutton"
             android:onClick="addContact"
             android:background="@color/buttonColor"
