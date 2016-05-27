@@ -129,13 +129,11 @@ public class LoginActivity extends AppCompatActivity {
                 String url = buildVerifyUserURL(view);
                 VerifyUserTask task = new VerifyUserTask();
                 task.execute(new String[]{url.toString()});
-//                if(loggedIn == true) {
-                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                             openFileOutput(getString(R.string.LOGIN_FILE)
-                                    , Context.MODE_PRIVATE));
-                    outputStreamWriter.write(userId);
-                    outputStreamWriter.close();
-//                }
+                            , Context.MODE_PRIVATE));
+                outputStreamWriter.write(userId);
+                outputStreamWriter.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -265,13 +263,12 @@ public class LoginActivity extends AppCompatActivity {
                 String url = buildRegisterURL(view);
                 AddUserTask task = new AddUserTask();
                 task.execute(new String[]{url.toString()});
-//                if(loggedIn == true) {
-                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                             openFileOutput(getString(R.string.LOGIN_FILE)
-                                    , Context.MODE_PRIVATE));
-                    outputStreamWriter.write(userId);
-                    outputStreamWriter.close();
-//                }
+                            , Context.MODE_PRIVATE));
+                outputStreamWriter.write(userId);
+                outputStreamWriter.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

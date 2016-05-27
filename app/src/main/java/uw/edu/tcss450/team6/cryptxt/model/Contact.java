@@ -8,7 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by David on 5/19/16.
+ * The Contact object holds details of a user's contact for display on the ContactsActivity.
+ *
+ * @author David Lee
+ * @date 19 May 2016
  */
 public class Contact implements Serializable {
 
@@ -26,7 +29,7 @@ public class Contact implements Serializable {
 
     /**
      * Parses the json string, returns an error message if unsuccessful.
-     * Returns course list if success.
+     * Returns contact list if success.
      * @param contactJSON
      * @return reason or null if successful.
      */
@@ -49,9 +52,7 @@ public class Contact implements Serializable {
         }
         return reason;
     }
-
-
-
+    
     public String getCid() { return cid; }
 
     public String getUser() { return user; }

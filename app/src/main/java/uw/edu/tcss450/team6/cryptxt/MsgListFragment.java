@@ -91,6 +91,8 @@ public class MsgListFragment extends Fragment {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
         }
+
+        //Retrieve user name from LOGIN_FILE
         String userName = "";
         try {
             InputStream inputStream = getActivity().openFileInput(
@@ -112,6 +114,8 @@ public class MsgListFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //Try to execute URL
         String URL_to_Execute = INBOX_URL + "&user=" + userName;
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

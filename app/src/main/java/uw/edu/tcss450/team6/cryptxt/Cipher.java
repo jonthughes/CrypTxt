@@ -31,6 +31,7 @@ public class Cipher {
      * @param input the plaintext
      * @param key the cipher's key
      * @return ciphertext encrypted with a caesar shift
+     *         letter 'A' is 0, so shifting 3, would go to 3 or letter 'D', etc.
      */
     public String caesarShift(String input, String key) {
         String r = "";
@@ -79,6 +80,11 @@ public class Cipher {
      * @param input the plaintext
      * @param key the cipher's key
      * @return ciphertext encrypted by a vigenere cipher
+     *         uses a word as they key, with each letter
+     *         being the amount to shift each character in the plaintext.
+     *        (banana = 1, 0, 13, 0, 13, 0 would shift the first letter by 1,
+     *        second letter by 0, third by 13, etc., and repeat on the 7th
+     *        letter (since banana is 6 letters long)
      */
     public String vigenere(String input, String key) {
         String r = "";
@@ -131,6 +137,10 @@ public class Cipher {
      * @param input the plaintext
      * @param key the cipher's key
      * @return ciphertext encrypted by a substitution cipher
+     *         swaps each letter of an alphabet with
+     *         another letter, such as below would change a to z, h to s, etc.:
+     *         a b c d e f g h i j k l m n o p q r s t u v w x y z
+     *         z y x w v u t s r q p o n m l k j i h g f e d c b a
      */
     public String substitution(String input, String key) {
         String r = "";
@@ -175,6 +185,11 @@ public class Cipher {
      * @param input the plaintext
      * @param key the cipher's key
      * @return ciphertext encrypted by a permutation cipher
+     *         swaps the placement of letters in a certain
+     *         pattern (for example, put the 1st letter in the 4th position,
+     *         2nd letter in the 6th position, etc.) If the key is
+     *         {3,5,1,6,4,2}, then “thread” would encrypt to “ratdeh” with
+     *         ‘r’ being the 3rd letter, ‘a’ being the 5th etc.
      */
     public String permutation(String input, String key) {
         String r = "";

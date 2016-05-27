@@ -27,13 +27,10 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
     private Cipher cipher;
     private int cipherNum;
     private View replyButton;
-
     private TextView receiveFrom;
     private TextView receiveDate;
     private TextView receiveMessage;
-
     private CryptxtDB mCryptxtDB;
-
 
     /**
      * {@inheritDoc}
@@ -151,6 +148,5 @@ public class ReceiveActivity extends AppCompatActivity implements AdapterView.On
 
         Intent intent = new Intent(this, SendActivity.class);
         startActivity(intent);
-        //@TODO go to new message with To: filled out, use same key
     }
 }

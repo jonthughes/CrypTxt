@@ -32,13 +32,6 @@ public class ShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
-//
-//        Spinner spinner = (Spinner) findViewById(R.id.shareSpinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.share_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
 
         emailSend = (Button) findViewById(R.id.email_button);
         emailTo = (EditText) findViewById(R.id.email_recipient);
@@ -60,8 +53,6 @@ public class ShareActivity extends AppCompatActivity {
 
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-                //email.putExtra(Intent.EXTRA_CC, new String[]{ to});
-                //email.putExtra(Intent.EXTRA_BCC, new String[]{to});
                 email.putExtra(Intent.EXTRA_SUBJECT, subject);
                 email.putExtra(Intent.EXTRA_TEXT, message);
                 email.setType("message/rfc822");
@@ -91,14 +82,5 @@ public class ShareActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-//        int shareItem = pos;
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
     }
 }

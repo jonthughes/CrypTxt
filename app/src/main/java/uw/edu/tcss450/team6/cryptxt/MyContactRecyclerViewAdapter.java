@@ -14,6 +14,9 @@ import uw.edu.tcss450.team6.cryptxt.model.Contact;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Contact} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
+ *
+ * @author David Lee
+ * @date May 2016
  */
 public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder> {
 
@@ -35,7 +38,6 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-//        holder.mIdView.setText(mValues.get(position).getUser());
         holder.mContentView.setText(mValues.get(position).getContact());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -57,14 +59,12 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-//        public final TextView mIdView;
         public final TextView mContentView;
         public Contact mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-//            mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 

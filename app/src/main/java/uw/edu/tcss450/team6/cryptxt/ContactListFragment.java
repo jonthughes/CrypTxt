@@ -31,6 +31,9 @@ import java.util.List;
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
+ *
+ * @author David Lee
+ * @date May 2016
  */
 public class ContactListFragment extends Fragment {
 
@@ -225,9 +228,6 @@ public class ContactListFragment extends Fragment {
 
             // Everything is good, show the list of contacts.
             if (!contactsList.isEmpty()) {
-//                String s = contactsList.toString();
-//                Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_LONG)
-//                        .show();
                 mRecyclerView.setAdapter(new MyContactRecyclerViewAdapter(contactsList, mListener));
             }
         }

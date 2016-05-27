@@ -8,7 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Jon on 4/28/2016.
+ * The Msg class holds data for a single message, so that it can be displayed in the Inbox and
+ * additional information is shown on the ReceiveActivity when a msg is clicked on in the Inbox.
+ *
+ * @author Jonathan Hughes
+ * @date 28 April 2016
  */
 public class Msg implements Serializable {
 
@@ -37,7 +41,7 @@ public class Msg implements Serializable {
 
     /**
      * Parses the json string, returns an error message if unsuccessful.
-     * Returns course list if success.
+     * Returns msg list if success.
      * @param msgJSON
      * @return reason or null if successful.
      */

@@ -7,15 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Jon on 5/24/2016.
+ * The CryptxtDB holds receiver data, to pre fill out the recipient when going transferring
+ * between activities.
+ *
+ * @author Jonathan Hughes
+ * @date 24 May 2016
  */
 public class CryptxtDB {
 
     public static final int DB_VERSION = 1;
     public static final String DB_NAME = "Cryptxt.DB";
-
     private DBHelper mDBHelper;
     private SQLiteDatabase mSQLiteDatabase;
+    private static final String RECEIVER_TABLE = "Receiver";
 
 
     public CryptxtDB(Context context) {
@@ -43,28 +47,23 @@ public class CryptxtDB {
         mSQLiteDatabase.close();
     }
 
-    private static final String RECEIVER_TABLE = "Receiver";
-
     /**
      * Returns the list of courses from the local Course table.
      * @return list
      */
     public String getReceiver() {
-
         String[] columns = {
                 "receiver"
         };
-
         String receiver = "";
-
         Cursor c = mSQLiteDatabase.query(
                 RECEIVER_TABLE,  // The table to query
-                columns,                               // The columns to return
-                null,                                // The columns for the WHERE clause
-                null,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                null                                 // The sort order
+                columns,         // The columns to return
+                null,            // The columns for the WHERE clause
+                null,            // The values for the WHERE clause
+                null,            // don't group the rows
+                null,            // don't filter by row groups
+                null             // The sort order
         );
         c.moveToFirst();
         for (int i=0; i<c.getCount(); i++) {
@@ -73,6 +72,9 @@ public class CryptxtDB {
         return receiver;
     }
 
+    /**
+     * Helps create and update the database.
+     */
     class DBHelper extends SQLiteOpenHelper {
 
         private static final String CREATE_RECEIVER_SQL =
@@ -97,5 +99,4 @@ public class CryptxtDB {
             onCreate(sqLiteDatabase);
         }
     }
-
 }

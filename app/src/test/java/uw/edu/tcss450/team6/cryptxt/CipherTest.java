@@ -8,7 +8,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Jon on 5/24/2016.
+ * This tests the Cipher class.
+ *
+ * @author Jonathan Hughes
+ * @date 26 May 2016
  */
 public class CipherTest {
 

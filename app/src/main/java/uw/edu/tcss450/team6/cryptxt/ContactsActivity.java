@@ -200,8 +200,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactListFr
                             .show();
                 }
             } catch (JSONException e) {
-//                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
-//                        e.getMessage(), Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(), "Contact added!"
                         , Toast.LENGTH_LONG)
                         .show();
